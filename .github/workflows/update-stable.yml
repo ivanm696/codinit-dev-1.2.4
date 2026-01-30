@@ -1,0 +1,102 @@
+name: Update Stable Branch
+
+# DISABLED: Using manual tag workflow instead
+# To re-enable, uncomment the 'on:' section below
+on:
+  workflow_dispatch:
+
+# on:
+#   push:
+#     branches:
+#       - main
+
+permissions:
+  contents: write
+
+jobs:
+  prepare-release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Configure Git
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: latest
+          run_install: false
+
+      - name: Get pnpm store directory
+        id: pnpm-cache
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
+
+      - name: Setup pnpm cache
+        uses: actions/cache@v4
+        with:
+          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: Get Current Version
+        id: current_version
+        run: |
+          CURRENT_VERSION=$(node -p "require('./package.json').version")
+          echo "version=$CURRENT_VERSION" >> $GITHUB_OUTPUT
+
+      - name: Install semver
+        run: pnpm add -g semver
+
+      - name: Determine Version Bump
+        id: version_bump
+        run: |
+          # Default to patch since this workflow is now manual only
+          echo "bump=patch" >> $GITHUB_OUTPUT
+
+      - name: Bump Version
+        id: bump_version
+        run: |
+          NEW_VERSION=$(semver -i ${{ steps.version_bump.outputs.bump }} ${{ steps.current_version.outputs.version }})
+          echo "new_version=$NEW_VERSION" >> $GITHUB_OUTPUT
+
+      - name: Update Package.json
+        run: |
+          NEW_VERSION=${{ steps.bump_version.outputs.new_version }}
+          pnpm version $NEW_VERSION --no-git-tag-version --allow-same-version
+
+      - name: Get the latest commit hash and version tag
+        run: |
+          echo "COMMIT_HASH=$(git rev-parse HEAD)" >> $GITHUB_ENV
+          echo "NEW_VERSION=${{ steps.bump_version.outputs.new_version }}" >> $GITHUB_ENV
+
+      - name: Commit and Tag Release
+        run: |
+          git pull
+          git add package.json pnpm-lock.yaml
+          git commit -m "chore: release version ${{ steps.bump_version.outputs.new_version }}"
+          git tag "v${{ steps.bump_version.outputs.new_version }}"
+          git push
+          git push --tags
+
+      - name: Update Stable Branch
+        run: |
+          if ! git checkout stable 2>/dev/null; then
+            echo "Creating new stable branch..."
+            git checkout -b stable
+          fi
+          git merge main --no-ff -m "chore: release version ${{ steps.bump_version.outputs.new_version }}"
+          git push --set-upstream origin stable --force

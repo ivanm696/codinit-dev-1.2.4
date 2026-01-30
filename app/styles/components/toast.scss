@@ -1,0 +1,26 @@
+@use '../z-index';
+
+.Toastify__toast-container {
+  @extend .z-toast;
+}
+
+.Toastify__toast {
+  --at-apply: shadow-md;
+
+  background-color: var(--codinit-elements-bg-depth-3);
+  color: var(--codinit-elements-textPrimary);
+  border: 1px solid var(--codinit-elements-borderColor);
+  box-shadow:
+    0 10px 15px -3px var(--dialog-shadow-color, rgba(0, 0, 0, 0.1)),
+    0 4px 6px -2px var(--dialog-shadow-color, rgba(0, 0, 0, 0.05));
+}
+
+.Toastify__close-button {
+  color: var(--codinit-elements-item-contentDefault);
+  opacity: 1;
+  transition: none;
+
+  &:hover {
+    color: var(--codinit-elements-item-contentActive);
+  }
+}

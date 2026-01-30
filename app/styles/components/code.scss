@@ -1,0 +1,17 @@
+.shiki {
+  background-color: var(--codinit-elements-code-background) !important;
+  border: 1px solid var(--codinit-elements-borderColor) !important;
+  border-radius: 8px;
+  padding: 1rem;
+  font-family: ui-monospace, 'Fira Code', Menlo, Monaco, Consolas, monospace;
+  font-size: 13px;
+  line-height: 1.6;
+
+  .actions & {
+    background-color: var(--codinit-elements-actions-code-background) !important;
+  }
+
+  &:not(.actions *) {
+    background-color: var(--codinit-elements-messages-code-background) !important;
+  }
+}

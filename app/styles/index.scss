@@ -1,0 +1,70 @@
+@use 'variables.scss';
+@use 'z-index.scss';
+@use 'animations.scss';
+@use 'components/terminal.scss';
+@use 'components/resize-handle.scss';
+@use 'components/code.scss';
+@use 'components/editor.scss';
+@use 'components/toast.scss';
+@use 'components/dialog.scss';
+@use '../../app/components/workbench/mocha-dark.scss';
+@use '../../app/components/chat/BaseChat.module.scss';
+@use '../../app/components/chat/CodeBlock.module.scss';
+@use '../../app/components/chat/Markdown.module.scss';
+@use '../../app/components/mcp/MCPServerCard.module.scss';
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  background-color: var(--codinit-elements-bg-depth-2);
+}
+
+/* --------------------------------------- */
+/* GLOBAL STYLES - Theme variables handled in variables.scss */
+/* --------------------------------------- */
+
+/* --------------------------------------- */
+/* MODERN SCROLLBAR                        */
+/* --------------------------------------- */
+
+.modern-scrollbar {
+  overflow: auto;
+
+  &::-webkit-scrollbar {
+    width: 2px;
+    height: 4px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--modern-scrollbar-thumb-background);
+    border-radius: 9999px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+    transition: background-color 0.2s ease-in-out;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: var(--modern-scrollbar-thumb-backgroundHover);
+  }
+
+  scrollbar-width: thin;
+  scrollbar-color: var(--modern-scrollbar-thumb-backgroundHover) transparent;
+}
+
+/* Inverted scrollbar for light-on-dark panels */
+.modern-scrollbar-invert {
+  &::-webkit-scrollbar-thumb {
+    background-color: color-mix(in srgb, var(--codinit-elements-textPrimary), transparent 70%);
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: color-mix(in srgb, var(--codinit-elements-textPrimary), transparent 50%);
+  }
+
+  scrollbar-color: color-mix(in srgb, var(--codinit-elements-textPrimary), transparent 50%) transparent;
+}

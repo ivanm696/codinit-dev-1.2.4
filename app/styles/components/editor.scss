@@ -1,0 +1,83 @@
+:root {
+  /* Base colors */
+  --cm-backgroundColor: var(--codinit-elements-bg-depth-1);
+  --cm-textColor: var(--codinit-elements-textPrimary);
+
+  /* Gutter */
+  --cm-gutter-backgroundColor: var(--codinit-elements-bg-depth-1);
+  --cm-gutter-textColor: var(--codinit-elements-textTertiary);
+  --cm-gutter-activeLineTextColor: var(--codinit-elements-textSecondary);
+
+  /* Fold Gutter */
+  --cm-foldGutter-textColor: var(--codinit-elements-textTertiary);
+  --cm-foldGutter-textColorHover: var(--codinit-elements-textSecondary);
+
+  /* Active Line */
+  --cm-activeLineBackgroundColor: var(--codinit-elements-editor-activeLine);
+
+  /* Cursor */
+  --cm-cursor-width: 2px;
+  --cm-cursor-backgroundColor: var(--codinit-elements-textSecondary);
+
+  /* Matching Brackets */
+  --cm-matching-bracket: rgba(59, 130, 246, 0.25);
+
+  /* Selection */
+  --cm-selection-backgroundColorFocused: var(--codinit-elements-editor-selection);
+  --cm-selection-backgroundOpacityFocused: 1;
+  /* Variable already contains opacity */
+
+  --cm-selection-backgroundColorBlured: var(--codinit-elements-editor-selection);
+  --cm-selection-backgroundOpacityBlured: 0.6;
+
+  /* Panels */
+  --cm-panels-borderColor: var(--codinit-elements-borderColor);
+
+  /* Search */
+  --cm-search-backgroundColor: var(--codinit-elements-bg-depth-2);
+  --cm-search-textColor: var(--codinit-elements-textPrimary);
+
+  --cm-search-closeButton-backgroundColor: transparent;
+  --cm-search-closeButton-backgroundColorHover: var(--codinit-elements-bg-depth-3);
+
+  --cm-search-closeButton-textColor: var(--codinit-elements-textTertiary);
+  --cm-search-closeButton-textColorHover: var(--codinit-elements-textPrimary);
+
+  --cm-search-button-backgroundColor: var(--codinit-elements-bg-depth-3);
+  --cm-search-button-backgroundColorHover: var(--codinit-elements-bg-depth-4);
+
+  --cm-search-button-textColor: var(--codinit-elements-textSecondary);
+  --cm-search-button-textColorHover: var(--codinit-elements-textPrimary);
+
+  --cm-search-button-borderColor: transparent;
+  --cm-search-button-borderColorHover: var(--codinit-elements-borderColorActive);
+
+  --cm-search-button-borderColorFocused: var(--codinit-elements-terminals-blue, #2563eb);
+
+  --cm-search-input-backgroundColor: var(--codinit-elements-bg-depth-1);
+  --cm-search-input-textColor: var(--codinit-elements-textPrimary);
+  --cm-search-input-borderColor: var(--codinit-elements-borderColor);
+  --cm-search-input-borderColorFocused: var(--codinit-elements-terminals-blue, #2563eb);
+
+  /* Tooltip */
+  --cm-tooltip-backgroundColor: var(--codinit-elements-bg-depth-3);
+  --cm-tooltip-textColor: var(--codinit-elements-textPrimary);
+
+  --cm-tooltip-backgroundColorSelected: rgba(59, 130, 246, 0.2);
+  --cm-tooltip-textColorSelected: var(--codinit-elements-textPrimary);
+
+  --cm-tooltip-borderColor: var(--codinit-elements-borderColor);
+
+  /* Search highlight */
+  --cm-searchMatch-backgroundColor: var(--codinit-elements-editor-match);
+}
+
+/* Theme overrides only if necessary for specific contrast adjustments */
+html[data-theme='light'] {
+  --cm-search-backgroundColor: var(--codinit-elements-bg-depth-1);
+  --cm-search-input-backgroundColor: var(--codinit-elements-bg-depth-2);
+}
+
+html[data-theme='dark'] {
+  --cm-activeLineBackgroundColor: var(--codinit-elements-editor-activeLine);
+}

@@ -1,0 +1,42 @@
+name: 'Bug report'
+description: Help us fix an issue
+body:
+  - type: markdown
+    attributes:
+      value: Thanks for reporting an issue with [codinit.dev](https://codinit.dev)!
+
+  - type: textarea
+    id: description
+    attributes:
+      label: What happened?
+      placeholder: |
+        **Bug:** …
+        **Expected:** …
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: How to reproduce
+      placeholder: |
+        1. …
+        2. …
+        3. …
+    validations:
+      required: true
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      placeholder: |
+        - Browser:
+        - OS:
+        - Provider/Model:
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Extra info
+      placeholder: Screenshots, links, etc.
