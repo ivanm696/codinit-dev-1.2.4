@@ -116,14 +116,14 @@
     "@xterm/addon-fit": "^0.10.0",
     "@xterm/addon-web-links": "^0.11.0",
     "@xterm/xterm": "^5.5.0",
-    "ai": "4.3.16",
+    "ai": "5.0.52",
     "chalk": "^5.6.2",
     "chart.js": "^4.5.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cmdk": "^1.1.1",
     "date-fns": "^3.6.0",
-    "diff": "^5.2.0",
+    "diff": "^5.2.2",
     "dotenv": "^16.6.1",
     "electron-log": "^5.4.3",
     "electron-store": "^10.1.0",
@@ -209,7 +209,7 @@
     "is-ci": "^3.0.1",
     "jsdom": "^26.1.0",
     "node-fetch": "^3.3.2",
-    "pnpm": "^9.15.9",
+    "pnpm": "^10.28.2",
     "prettier": "^3.6.2",
     "rimraf": "^4.4.1",
     "sass-embedded": "^1.93.2",
@@ -222,7 +222,7 @@
     "vite-plugin-optimize-css-modules": "^1.2.0",
     "vite-tsconfig-paths": "^4.3.2",
     "vitest": "^3.2.4",
-    "wrangler": "^4.42.0"
+    "wrangler": "^4.59.1"
   },
   "resolutions": {
     "@typescript-eslint/utils": "^8.0.0-alpha.30"
